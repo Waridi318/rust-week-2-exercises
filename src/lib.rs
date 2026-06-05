@@ -1,10 +1,11 @@
+#[allow(unused)]
 use hex::{decode, encode};
 
 pub fn decode_hex(hex_str: &str) -> Result<Vec<u8>, String> {
     //Decode hex string into Vec<u8>, return error string on failure
-    
+
     let transaction_bytes = hex::decode(hex_str);
-    
+
     match transaction_bytes {
         Ok(bytes) => Ok(bytes),
         Err(error) => Err(error.to_string()),
@@ -13,7 +14,7 @@ pub fn decode_hex(hex_str: &str) -> Result<Vec<u8>, String> {
 
 pub fn to_big_endian(bytes: &[u8]) -> Vec<u8> {
     //Reverse the byte order of input slice and return as Vec<u8>
-    
+
     let mut result = Vec::new();
 
     for i in (0..bytes.len()).rev() {
@@ -25,19 +26,15 @@ pub fn to_big_endian(bytes: &[u8]) -> Vec<u8> {
 pub fn bytes_to_hex(bytes: &[u8]) -> String {
     //Implement conversion of bytes slice to hex string
 
-    let transaction_hex = hex::encode(bytes);
-    transaction_hex
+    hex::encode(bytes)
+    
 }
 
 pub fn hex_to_bytes(hex: &str) -> Result<Vec<u8>, hex::FromHexError> {
     //Implement conversion of hex string to bytes vector
-    
-    let bytes_vector = hex::decode(hex);
-    match bytes_vector {
-        Ok(bytes) => Ok(bytes),
-        Err(error) => Err(error),
-    }
 
+    hex::decode(hex)
+    
 }
 
 pub fn swap_endian_u32(num: u32) -> [u8; 4] {
@@ -49,7 +46,7 @@ pub fn parse_satoshis(input: &str) -> Result<u64, String> {
     //Parse input string to u64, return error string if invalid
 
     let result = input.parse();
-    match result{
+    match result {
         Ok(num) => Ok(num),
         Err(_) => Err("Invalid satoshi amount".to_string()),
     }
@@ -102,7 +99,7 @@ pub fn apply_fee(balance: &mut u64, fee: u64) {
 
 pub fn move_txid(txid: String) -> String {
     //Return formatted string including the txid for display or logging
-    format!("txid: {}",txid)
+    format!("txid: {}", txid)
 }
 
 // TODO: Add necessary derive traits
@@ -128,7 +125,7 @@ impl Opcode {
 #[derive(Debug, Clone, PartialEq)]
 pub struct UTXO {
     pub txid: Vec<u8>,
-    pub vout: u32,  //output index of that transaction
+    pub vout: u32, //output index of that transaction
     pub value: u64,
 }
 
