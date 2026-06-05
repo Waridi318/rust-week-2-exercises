@@ -74,7 +74,8 @@ pub fn classify_script(script: &[u8]) -> ScriptType {
 pub struct Outpoint();
 
 pub fn read_pushdata(script: &[u8]) -> &[u8] {
-    // TODO: Return the pushdata portion of the script slice (assumes pushdata starts at index 2)
+    //Return the pushdata portion of the script slice (assumes pushdata starts at index 2)
+    &script[2..]
 }
 
 pub trait Wallet {
@@ -92,7 +93,8 @@ impl Wallet for TestWallet {
 }
 
 pub fn apply_fee(balance: &mut u64, fee: u64) {
-    // TODO: Subtract fee from mutable balance reference
+    // Subtract fee from mutable balance reference
+
 }
 
 pub fn move_txid(txid: String) -> String {
@@ -108,14 +110,19 @@ pub enum Opcode {
 
 impl Opcode {
     pub fn from_byte(byte: u8) -> Result<Self, String> {
-        // TODO: Implement mapping from byte to Opcode variant
+        //Implement mapping from byte to Opcode variant
+        match byte {
+            0xAC => Ok(Opcode::OpChecksig),
+            0x76 => Ok(Opcode::OpDup),
+            _ => Ok(Opcode::OpInvalid),
+        }
     }
 }
 
 // TODO: Add necessary derive traits
 pub struct UTXO {
     pub txid: Vec<u8>,
-    pub vout: u32,
+    pub vout: u32,  //output index of that transaction
     pub value: u64,
 }
 
