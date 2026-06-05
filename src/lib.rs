@@ -117,9 +117,9 @@ impl Opcode {
     pub fn from_byte(byte: u8) -> Result<Self, String> {
         //Implement mapping from byte to Opcode variant
         match byte {
-            0xAC => Ok(Opcode::OpChecksig),
+            0xac => Ok(Opcode::OpChecksig),
             0x76 => Ok(Opcode::OpDup),
-            _ => Ok(Opcode::OpInvalid),
+            _ => Err("Invalid opcode: 0x00".to_string()),
         }
     }
 }
