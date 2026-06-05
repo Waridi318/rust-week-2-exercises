@@ -102,7 +102,7 @@ pub fn apply_fee(balance: &mut u64, fee: u64) {
 
 pub fn move_txid(txid: String) -> String {
     //Return formatted string including the txid for display or logging
-    txid
+    format!("txid: {}",txid)
 }
 
 // TODO: Add necessary derive traits
