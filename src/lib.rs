@@ -48,7 +48,7 @@ pub fn swap_endian_u32(num: u32) -> [u8; 4] {
 pub fn parse_satoshis(input: &str) -> Result<u64, String> {
     //Parse input string to u64, return error string if invalid
 
-    let result =  input.parse()
+    let result =  input.parse();
     match result{
         Ok(num) => Ok(num),
         Err(error) => Err(error.to_string()),
