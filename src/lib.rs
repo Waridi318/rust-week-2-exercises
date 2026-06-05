@@ -94,13 +94,14 @@ impl Wallet for TestWallet {
 
 pub fn apply_fee(balance: &mut u64, fee: u64) {
     // Subtract fee from mutable balance reference
-    let mut mutable_balance = 
-
+    let mutable_balance = *balance;
+    let result = mutable_balance - fee;
+    *balance = result;
 }
 
 pub fn move_txid(txid: String) -> String {
     // TODO: Return formatted string including the txid for display or logging
-    {?:}.txid
+    txid
 }
 
 // TODO: Add necessary derive traits
