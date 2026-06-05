@@ -94,11 +94,13 @@ impl Wallet for TestWallet {
 
 pub fn apply_fee(balance: &mut u64, fee: u64) {
     // Subtract fee from mutable balance reference
+    let mut mutable_balance = 
 
 }
 
 pub fn move_txid(txid: String) -> String {
     // TODO: Return formatted string including the txid for display or logging
+    {?:}.txid
 }
 
 // TODO: Add necessary derive traits
@@ -127,5 +129,6 @@ pub struct UTXO {
 }
 
 pub fn consume_utxo(utxo: UTXO) -> UTXO {
-    // TODO: Implement UTXO consumption logic (if any)
+    // Implement UTXO consumption logic (if any)
+    utxo
 }
