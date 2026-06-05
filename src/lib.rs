@@ -63,7 +63,7 @@ pub enum ScriptType {
 
 pub fn classify_script(script: &[u8]) -> ScriptType {
     //Match script pattern and return corresponding ScriptType
-    match ScriptType {
+    match script {
         [0x76, 0xA9] => ScriptType::P2PKH,
         [0x00, 0x14] => ScriptType::P2WPKH,
         _ => ScriptType::Unknown,
