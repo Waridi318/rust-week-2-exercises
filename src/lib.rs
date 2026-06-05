@@ -14,7 +14,7 @@ pub fn decode_hex(hex_str: &str) -> Result<Vec<u8>, String> {
 pub fn to_big_endian(bytes: &[u8]) -> Vec<u8> {
     //Reverse the byte order of input slice and return as Vec<u8>
     
-    let result = Vec::new();
+    let mut result = Vec::new();
 
     for i in (0..bytes.len()).rev() {
         result.push(bytes[i]);
