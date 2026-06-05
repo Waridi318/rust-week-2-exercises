@@ -71,7 +71,7 @@ pub fn classify_script(script: &[u8]) -> ScriptType {
 }
 
 // TODO: complete Outpoint tuple struct
-pub struct Outpoint(pub [u8; 32], pub u32); //TXID, vout
+pub struct Outpoint(pub String, pub u32); //TXID, vout
 
 pub fn read_pushdata(script: &[u8]) -> &[u8] {
     //Return the pushdata portion of the script slice (assumes pushdata starts at index 2)
@@ -87,8 +87,9 @@ pub struct TestWallet {
 }
 
 impl Wallet for TestWallet {
-    fn balance(&self) -> u64 {
-        // TODO: Return the wallet's confirmed balance
+    fn balance(self: &TestWallet) -> u64 {
+        //Return the wallet's confirmed balance
+        self.confirmed
     }
 }
 
@@ -105,6 +106,7 @@ pub fn move_txid(txid: String) -> String {
 }
 
 // TODO: Add necessary derive traits
+#[derive(Debug, Clone, Copy)]
 pub enum Opcode {
     OpChecksig,
     OpDup,
@@ -123,6 +125,7 @@ impl Opcode {
 }
 
 // TODO: Add necessary derive traits
+#[derive(Debug, Clone)]
 pub struct UTXO {
     pub txid: Vec<u8>,
     pub vout: u32,  //output index of that transaction
