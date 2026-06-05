@@ -46,7 +46,13 @@ pub fn swap_endian_u32(num: u32) -> [u8; 4] {
 }
 
 pub fn parse_satoshis(input: &str) -> Result<u64, String> {
-    // TODO: Parse input string to u64, return error string if invalid
+    //Parse input string to u64, return error string if invalid
+
+    let result =  input.parse()
+    match result{
+        Ok(num) => Ok(num),
+        Err(error) => Err(error.to_string()),
+    }
 }
 
 pub enum ScriptType {
@@ -56,7 +62,12 @@ pub enum ScriptType {
 }
 
 pub fn classify_script(script: &[u8]) -> ScriptType {
-    // TODO: Match script pattern and return corresponding ScriptType
+    //Match script pattern and return corresponding ScriptType
+    match ScriptType {
+        [0x76, 0xA9] => ScriptType::P2PKH,
+        [0x00, 0x14] => ScriptType::P2WPKH,
+        _ => ScriptType::Unknown,
+    }
 }
 
 // TODO: complete Outpoint tuple struct
