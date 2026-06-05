@@ -71,7 +71,7 @@ pub fn classify_script(script: &[u8]) -> ScriptType {
 }
 
 // TODO: complete Outpoint tuple struct
-pub struct Outpoint();
+pub struct Outpoint(pub [u8; 32], pub u32); //TXID, vout
 
 pub fn read_pushdata(script: &[u8]) -> &[u8] {
     //Return the pushdata portion of the script slice (assumes pushdata starts at index 2)
@@ -100,7 +100,7 @@ pub fn apply_fee(balance: &mut u64, fee: u64) {
 }
 
 pub fn move_txid(txid: String) -> String {
-    // TODO: Return formatted string including the txid for display or logging
+    //Return formatted string including the txid for display or logging
     txid
 }
 
